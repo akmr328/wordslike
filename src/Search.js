@@ -19,6 +19,7 @@ const Search = props => {
         shortDef: wordsFromAPI.shortdef,
         syns: wordsFromAPI.meta.syns
       })
+      console.log(data, 'dtaa')
     })
   }
   
@@ -37,9 +38,12 @@ const Search = props => {
      <p>{words.shortDef}</p>
      {/* <ul>
        {words.syns.map((syn) => (
-         <li>{words.syn}</li>
+         <li>{syn}</li>
        ))}
      </ul> */}
+     <ul>
+      
+     </ul>
    </div>
     </div>
   )
