@@ -1,12 +1,15 @@
 import './App.css';
+import Search from './Search'
 
 function App() {
+  
+  
   return (
     <div className="App">
-      <header className="App-header">
-       <input type="text" placeholder="Find words like..."></input>
-    
+      <header className="App-header">Find Words Like...
+      <span></span>
       </header>
+      <Search />
     </div>
   );
 }
