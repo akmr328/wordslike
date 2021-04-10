@@ -1,25 +1,16 @@
-import { useEffect, useState } from 'react';
-import { connect } from 'react-redux'
+import { useState } from 'react';
 import axios from 'axios'
-import {fetchWords} from './store'
 
 
 const Search = props => {
-  // const {offset, setOffset} = useState(0);
-  const {getWords} = props
+
   
-  const [word, setWord] = useState(0)
+  const [state, setState] = useState({headWord: ''})
   
-  // const useEffect(
-  //   () => {
-  //     getWords()
-  //   },
-  //   []
-  // )
     
   const handleClick = event => {
     event.preventDefault()
-    axios.get ('https://dictionaryapi.com/api/v3/references/thesaurus/json/test?key=827260dc-41b6-455f-8e8d-b6665e88e61e')
+    axios.get (`https://dictionaryapi.com/api/v3/references/thesaurus/json/${state}?key=827260dc-41b6-455f-8e8d-b6665e88e61e`)
     .then (data => {
       const wordsFromAPI = data.data.items[0]
       const wordInfo = {
@@ -32,7 +23,7 @@ const Search = props => {
   }
   
   const handleSearch = event => {
-    setWord(event.target.value)
+    setState(event.target.value)
   }
     
   return(
@@ -45,18 +36,4 @@ const Search = props => {
 
 
 
-
-// const mapState = state => {
-//   return {
-//     words: state.words
-//   }
-// }
-
-// const mapDispatch = (dispatch) => {
-//   return {
-//     getWords: () => dispatch(fetchWords()),
-//   }
-// }
-
-// export default connect(mapState, mapDispatch)(Search)
 export default Search
