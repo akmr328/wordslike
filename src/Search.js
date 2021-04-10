@@ -12,13 +12,14 @@ const Search = props => {
     event.preventDefault()
     axios.get (`https://dictionaryapi.com/api/v3/references/thesaurus/json/${state}?key=827260dc-41b6-455f-8e8d-b6665e88e61e`)
     .then (data => {
-      const wordsFromAPI = data.data.items[0]
+      const wordsFromAPI = data.data[0]
       const wordInfo = {
-        id: data.id,
-        shortDef: data.shortdef,
-        type: data.fl, 
-        sseq: data.sseq
+        id: wordsFromAPI.meta.id,
+        type: wordsFromAPI.fl, 
+        shortDef: wordsFromAPI.shortdef,
+        syns: wordsFromAPI.meta.syns
       }
+      console.log(wordsFromAPI, 'wordsFrom')
     })
   }
   
