@@ -5,32 +5,42 @@ import axios from 'axios'
 const Search = props => {
 
   
-  const [state, setState] = useState({headWord: ''})
+  const [words, setWords] = useState({headWord: '', type: '', shortDef: '', syns: []})
   
     
   const handleClick = event => {
     event.preventDefault()
-    axios.get (`https://dictionaryapi.com/api/v3/references/thesaurus/json/${state}?key=827260dc-41b6-455f-8e8d-b6665e88e61e`)
+    axios.get (`https://dictionaryapi.com/api/v3/references/thesaurus/json/${words}?key=827260dc-41b6-455f-8e8d-b6665e88e61e`)
     .then (data => {
       const wordsFromAPI = data.data[0]
-      const wordInfo = {
-        id: wordsFromAPI.meta.id,
+      setWords({
+        headWord: wordsFromAPI.meta.id,
         type: wordsFromAPI.fl, 
         shortDef: wordsFromAPI.shortdef,
         syns: wordsFromAPI.meta.syns
-      }
-      console.log(wordsFromAPI, 'wordsFrom')
+      })
     })
   }
   
   const handleSearch = event => {
-    setState(event.target.value)
+    event.preventDefault()
+    setWords(event.target.value)
   }
     
   return(
     <div className="container"> 
-    <input type="search" onChange={handleSearch} placeholder="Find words like..."></input>
+    <input type="search" name="search" onChange={handleSearch} placeholder="Find words like..."></input>
        <button type='submit' onClick={handleClick}>Search</button>
+     <div className="result-container">
+     <h2 className='headWord' name="headWord" >{words.headWord}</h2>
+     <p>{words.type}</p>
+     <p>{words.shortDef}</p>
+     {/* <ul>
+       {words.syns.map((syn) => (
+         <li>{words.syn}</li>
+       ))}
+     </ul> */}
+   </div>
     </div>
   )
 }

@@ -38,6 +38,10 @@
   padding: 70px
 }
 
+.result-container {
+  color: white
+}
+
 .App-link {
   color: #61dafb;
 }
