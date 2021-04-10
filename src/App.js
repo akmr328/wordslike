@@ -6,9 +6,10 @@ function App() {
   
   return (
     <div className="App">
-      <header className="App-header">Find Words Like...
-      <span></span>
+      <header className="App-header">
+        <h3 className="app-h3"> Find Words Like...</h3>
       </header>
+      <span></span>
       <Search />
     </div>
   );

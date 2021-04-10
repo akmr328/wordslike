@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { connect } from 'react-redux'
 import axios from 'axios'
 import {fetchWords} from './store'
@@ -8,12 +8,14 @@ const Search = props => {
   // const {offset, setOffset} = useState(0);
   const {getWords} = props
   
-  useEffect(
-    () => {
-      getWords()
-    },
-    []
-  )
+  const [word, setWord] = useState(0)
+  
+  // const useEffect(
+  //   () => {
+  //     getWords()
+  //   },
+  //   []
+  // )
     
   const handleClick = event => {
     event.preventDefault()
@@ -28,10 +30,14 @@ const Search = props => {
       }
     })
   }
+  
+  const handleSearch = event => {
+    setWord(event.target.value)
+  }
     
   return(
     <div className="container"> 
-    <input type="search" placeholder="Find words like..."></input>
+    <input type="search" onChange={handleSearch} placeholder="Find words like..."></input>
        <button type='submit' onClick={handleClick}>Search</button>
     </div>
   )
@@ -40,16 +46,17 @@ const Search = props => {
 
 
 
-const mapState = state => {
-  return {
-    words: state.words
-  }
-}
+// const mapState = state => {
+//   return {
+//     words: state.words
+//   }
+// }
 
-const mapDispatch = (dispatch) => {
-  return {
-    getWords: () => dispatch(fetchWords()),
-  }
-}
+// const mapDispatch = (dispatch) => {
+//   return {
+//     getWords: () => dispatch(fetchWords()),
+//   }
+// }
 
-export default connect(mapState, mapDispatch)(Search)
+// export default connect(mapState, mapDispatch)(Search)
+export default Search
