@@ -17,7 +17,7 @@ const Search = props => {
         headWord: wordsFromAPI.meta.id,
         type: wordsFromAPI.fl, 
         shortDef: wordsFromAPI.shortdef[0],
-        syns: wordsFromAPI.meta.syns[0].join(', ')
+        syns: wordsFromAPI.meta.syns.map((syn) => syn.join(', '))
       })
     })
   }
