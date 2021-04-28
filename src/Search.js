@@ -17,9 +17,8 @@ const Search = props => {
         headWord: wordsFromAPI.meta.id,
         type: wordsFromAPI.fl, 
         shortDef: wordsFromAPI.shortdef[0],
-        syns: wordsFromAPI.meta.syns[0]
+        syns: wordsFromAPI.meta.syns[0].join(', ')
       })
-      console.log(data, 'dtaa')
     })
   }
   
@@ -36,15 +35,6 @@ const Search = props => {
      <h2 className='headWord' name="headWord" >{words.headWord}</h2>
      <p>{words.type}</p>
      <p>{words.shortDef}</p>
-     {/* <ul>
-       {words.syns.map((syn) =>
-       <div key={syn.id}>
-         {syn.content.map((c) => (
-           <li>{c.content}</li>
-         ))}
-       </div>
-       )}
-     </ul> */}
      <ul>
       <li>{words.syns}</li>
      </ul>
